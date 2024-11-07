@@ -28,6 +28,8 @@ private:
 
 	void CreateSRV();
 
+	void CreateConstantBuffer();
+
 	void LoadShaderFromFile(const wstring& path, const string& name, const string& version, ComPtr<ID3DBlob>& blob);
 
 private:
@@ -69,6 +71,11 @@ private:
 
 	// SRV
 	ComPtr<ID3D11ShaderResourceView> _shaderResourceView;
+
+private:
+	// SRT
+	TransformData _transformData;
+	ComPtr<ID3D11Buffer> _constantBuffer = nullptr;
 
 };
 
