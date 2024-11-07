@@ -26,6 +26,7 @@ private:
 	void CreateVS();
 	void CreatePS();
 
+	void CreateRasterizerState();
 	void CreateSRV();
 
 	void CreateConstantBuffer();
@@ -64,6 +65,9 @@ private:
 	// VS
 	ComPtr<ID3D11VertexShader> _vertexShader = nullptr;
 	ComPtr<ID3DBlob> _vsBlob = nullptr;
+
+	// RS
+	ComPtr<ID3D11RasterizerState> _rasterizeState = nullptr;
 
 	// PS
 	ComPtr<ID3D11PixelShader> _pixelShader = nullptr;

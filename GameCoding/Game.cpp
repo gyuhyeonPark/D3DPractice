@@ -25,6 +25,8 @@ void Game::Init(HWND hwnd)
 	CreateInputLayout();
 	CreatePS();
 
+	CreateRasterizerState();
+
 	CreateSRV();
 
 	CreateConstantBuffer();
@@ -32,8 +34,8 @@ void Game::Init(HWND hwnd)
 
 void Game::Update()
 {
-	_transformData.offset.x = 1.0f;
-	_transformData.offset.y = 1.0f;
+	_transformData.offset.x = 0.3f;
+	_transformData.offset.y = 0.6f;
 
 	D3D11_MAPPED_SUBRESOURCE subResource;
 	ZeroMemory(&subResource, sizeof(subResource));
@@ -64,7 +66,7 @@ void Game::Render()
 		_deviceContext->VSSetConstantBuffers(0, 1, _constantBuffer.GetAddressOf());
 
 		// RS
-
+		_deviceContext->RSSetState(_rasterizeState.Get());
 
 
 		// PS
@@ -244,6 +246,18 @@ void Game::CreatePS()
 	LoadShaderFromFile(L"Default.hlsl", "PS", "ps_5_0", _psBlob);
 
 	HRESULT hr = _device->CreatePixelShader(_psBlob->GetBufferPointer(), _psBlob->GetBufferSize(), nullptr, _pixelShader.GetAddressOf());
+	CHECK(hr);
+}
+
+void Game::CreateRasterizerState()
+{
+	D3D11_RASTERIZER_DESC desc;
+	ZeroMemory(&desc, sizeof(desc));
+	desc.FillMode = D3D11_FILL_SOLID;
+	desc.CullMode = D3D11_CULL_BACK;
+	desc.FrontCounterClockwise = false;
+
+	HRESULT hr = _device->CreateRasterizerState(&desc, _rasterizeState.GetAddressOf());
 	CHECK(hr);
 }
 
