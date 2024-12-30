@@ -55,7 +55,7 @@ private:
 
 	// Misc
 	D3D11_VIEWPORT _viewPort = { 0 };
-	float _clearColor[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
+	float _clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
 private:
 	// Geometry
@@ -70,7 +70,7 @@ private:
 	ComPtr<ID3DBlob> _vsBlob = nullptr;
 
 	// RS
-	ComPtr<ID3D11RasterizerState> _rasterizeState = nullptr;
+	ComPtr<ID3D11RasterizerState> _rasterizerState = nullptr;
 
 	// PS
 	ComPtr<ID3D11PixelShader> _pixelShader = nullptr;
@@ -87,5 +87,8 @@ private:
 	TransformData _transformData;
 	ComPtr<ID3D11Buffer> _constantBuffer = nullptr;
 
+	Vec3 _localPosition = { 0.f, 0.f, 0.f };
+	Vec3 _localRotation = { 0.f, 0.f, 0.f };
+	Vec3 _localScale = { 1.f, 1.f, 1.f };
 };
 
