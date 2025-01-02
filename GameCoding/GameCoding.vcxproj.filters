@@ -25,6 +25,30 @@
     <Filter Include="소스 파일\98. Shaders">
       <UniqueIdentifier>{f5b4be99-2923-4d64-8969-691d501c4562}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00. Engine">
+      <UniqueIdentifier>{5056249c-feca-40d8-a026-b0d9d84bca6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline">
+      <UniqueIdentifier>{57bb5169-62a6-40ff-aaed-6b7300aa9740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\00. Geometry">
+      <UniqueIdentifier>{d40d32dd-2c7e-4f54-8d7f-4dd270cc6716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\01. InputAssembler">
+      <UniqueIdentifier>{60e87e71-984d-4348-8b2e-56382575d190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\02. VertexShader">
+      <UniqueIdentifier>{90b2189a-775b-451e-9ca5-7367af85155f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\03. Rasterizer">
+      <UniqueIdentifier>{28f07a0d-e9fa-445a-acf0-c87e858483e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\04. PixelShader">
+      <UniqueIdentifier>{b9c3202c-4e4e-43ac-bd6a-d68d2cf3e279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Pipeline\05. OutputMerger">
+      <UniqueIdentifier>{d8a650ae-6222-44d9-9cdd-0404286bffd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCoding.h">
@@ -57,6 +81,9 @@
     <ClInclude Include="SimpleMath.h">
       <Filter>소스 파일\99. Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameCoding.rc">
@@ -83,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>소스 파일\99. Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
