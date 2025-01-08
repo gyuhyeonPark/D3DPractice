@@ -41,4 +41,18 @@ using namespace Microsoft::WRL;
 #define CHECK(p)	assert(SUCCEEDED(p))
 
 // Engine
+// 원래는 이런식으로 때려버리면 안되고, 꼭 헤더에 전방선언 및 cpp에 #include 해주는 것이 정석이다.
 #include "Graphics.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "InputLayout.h"
+#include "Geometry.h"
+#include "GeometryHelper.h"
+#include "VertexData.h"
+#include "Shader.h"
+#include "ConstantBuffer.h"
+#include "Texture.h"
+#include "RasterizerState.h"
+#include "SamplerState.h"
+#include "BlendState.h"
+#include "Pipeline.h"
