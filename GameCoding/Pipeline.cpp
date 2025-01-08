@@ -2,6 +2,7 @@
 #include "Pipeline.h"
 
 Pipeline::Pipeline(ComPtr<ID3D11DeviceContext> deviceContext)
+	: _deviceContext(deviceContext)
 {
 
 }
@@ -44,4 +45,31 @@ void Pipeline::SetVertexBuffer(shared_ptr<VertexBuffer> buffer)
 void Pipeline::SetIndexBuffer(shared_ptr<IndexBuffer> buffer)
 {
 	_deviceContext->IASetIndexBuffer(buffer->GetComPtr().Get(), DXGI_FORMAT_R32_UINT, 0);
+}
+
+void Pipeline::SetTexture(uint32 slot, uint32 scope, shared_ptr<Texture> texture)
+{
+	if (scope & SS_VertexShader)
+		_deviceContext->VSSetShaderResources(slot, 1, texture->GetComPtr().GetAddressOf());
+	if (scope & SS_PixelShader)
+		_deviceContext->PSSetShaderResources(slot, 1, texture->GetComPtr().GetAddressOf());
+}
+
+void Pipeline::SetSamplerState(uint32 slot, uint32 scope, shared_ptr<SamplerState> samplerState)
+{
+	if (scope & SS_VertexShader)
+		_deviceContext->VSSetSamplers(slot, 1, samplerState->GetComPtr().GetAddressOf());
+	if (scope & SS_PixelShader)
+		_deviceContext->PSSetSamplers(slot, 1, samplerState->GetComPtr().GetAddressOf());
+
+}
+
+void Pipeline::Draw(uint32 vertexCount, uint32 startVertexLocation)
+{
+	_deviceContext->Draw(vertexCount, startVertexLocation);
+}
+
+void Pipeline::DrawIndexed(uint32 indexCount, uint32 startIndexLocation, uint32 baseVertexLocation)
+{
+	_deviceContext->DrawIndexed(indexCount, startIndexLocation, baseVertexLocation);
 }

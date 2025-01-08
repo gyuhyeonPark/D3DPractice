@@ -27,7 +27,13 @@ public:
 	void SetIndexBuffer(shared_ptr<IndexBuffer> buffer);
 
 	template<typename T>
-	void SetConstantBuffer(uint32 slot, shared_ptr<ConstantBuffer<T>> buffer);
+	void SetConstantBuffer(uint32 slot, uint32 scope, shared_ptr<ConstantBuffer<T>> buffer);
+
+	void SetTexture(uint32 slot, uint32 scope, shared_ptr<Texture> texture);
+	void SetSamplerState(uint32 slot, uint32 scope, shared_ptr<SamplerState> samplerState);
+
+	void Draw(uint32 vertexCount, uint32 startVertexLocation);
+	void DrawIndexed(uint32 indexCount, uint32 startIndexLocation, uint32 baseVertexLocation);
 
 private:
 	ComPtr<ID3D11DeviceContext> _deviceContext;
@@ -35,8 +41,11 @@ private:
 };
 
 template<typename T>
-inline void Pipeline::SetConstantBuffer(uint32 slot, shared_ptr<ConstantBuffer<T>> buffer)
+inline void Pipeline::SetConstantBuffer(uint32 slot, uint32 scope, shared_ptr<ConstantBuffer<T>> buffer)
 {
-	_deviceContext->VSSetConstantBuffers(slot, 1, _constantBuffer->GetComPtr().GetAddressOf());
+	if (scope & SS_VertexShader)
+		_deviceContext->VSSetConstantBuffers(slot, 1, buffer->GetComPtr().GetAddressOf());
+	if (scope & SS_PixelShader)
+		_deviceContext->PSSetConstantBuffers(slot, 1, buffer->GetComPtr().GetAddressOf());
 
 }

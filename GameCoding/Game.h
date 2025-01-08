@@ -18,6 +18,7 @@ private:
 	//uint32 _height = 0;
 
 	shared_ptr<Graphics> _graphics;
+	shared_ptr<Pipeline> _pipeline;
 
 private:
 	// Geometry

@@ -16,6 +16,8 @@ void Game::Init(HWND hwnd)
 	_hwnd = hwnd;
 	
 	_graphics = make_shared<Graphics>(hwnd);
+	_pipeline = make_shared<Pipeline>(_graphics->GetDeviceContext());
+
 	_vertexBuffer = make_shared<VertexBuffer>(_graphics->GetDevice());
 	_indexBuffer = make_shared<IndexBuffer>(_graphics->GetDevice());
 	_inputLayout = make_shared<InputLayout>(_graphics->GetDevice());
@@ -81,35 +83,22 @@ void Game::Render()
 	_graphics->RenderBegin();
 
 	{
-		uint32 stride = sizeof(VertexTextureData);
-		uint32 offset = 0;
+		PipelineInfo info;
+		info.inputLayout = _inputLayout;
+		info.vertexShader = _vertexShader;
+		info.pixelShader = _pixelShader;
+		info.rasterizerState = _rasterizerState;
+		info.blendState = _blendState;
 
-		auto _deviceContext = _graphics->GetDeviceContext();
+		_pipeline->UpdatePipeline(info);
 
-		// IA
-		_deviceContext->IASetVertexBuffers(0, 1, _vertexBuffer->GetComPtr().GetAddressOf(), &stride, &offset);
-		_deviceContext->IASetIndexBuffer(_indexBuffer->GetComPtr().Get(), DXGI_FORMAT_R32_UINT, 0);
-		_deviceContext->IASetInputLayout(_inputLayout->GetComPtr().Get());
-		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		_pipeline->SetVertexBuffer(_vertexBuffer);
+		_pipeline->SetIndexBuffer(_indexBuffer);
+		_pipeline->SetConstantBuffer<TransformData>(0, SS_VertexShader, _constantBuffer);
+		_pipeline->SetTexture(0, SS_PixelShader, _texture1);
+		_pipeline->SetSamplerState(0, SS_PixelShader, _samplerState);
 
-		// VS
-		_deviceContext->VSSetShader(_vertexShader->GetComPtr().Get(), nullptr, 0);
-		_deviceContext->VSSetConstantBuffers(0, 1, _constantBuffer->GetComPtr().GetAddressOf());
-
-		// RS
-		_deviceContext->RSSetState(_rasterizerState->GetComPtr().Get());
-
-		// PS
-		_deviceContext->PSSetShader(_pixelShader->GetComPtr().Get(), nullptr, 0);
-		_deviceContext->PSSetShaderResources(0, 1, _texture1->GetComPtr().GetAddressOf());
-		//_deviceContext->PSSetShaderResources(1, 1, _shaderResourveView2.GetAddressOf());
-		_deviceContext->PSSetSamplers(0, 1, _samplerState->GetComPtr().GetAddressOf());
-
-		// OM
-		_deviceContext->OMSetBlendState(_blendState->GetComPtr().Get(), nullptr, 0xFFFFFFFF);
-
-		//_deviceContext->Draw(_vertices.size(), 0);
-		_deviceContext->DrawIndexed(_geometry->GetIndices().size(), 0, 0);
+		_pipeline->DrawIndexed(_indexBuffer->GetCount(), 0, 0);
 	}
 
 	_graphics->RenderEnd();
