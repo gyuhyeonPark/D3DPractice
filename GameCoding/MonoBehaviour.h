@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+
 class MonoBehaviour : public Component
 {
 	using Super = Component;
@@ -7,8 +8,11 @@ class MonoBehaviour : public Component
 public:
 	MonoBehaviour();
 	~MonoBehaviour();
-	
+
 	virtual void Awake() override;
+	virtual void Start() override;
 	virtual void Update() override;
+	virtual void LateUpdate() override;
+	virtual void FixedUpdate() override;
 };
 

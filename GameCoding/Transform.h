@@ -29,6 +29,10 @@ public:
 	Vec3 GetPosition() { return _position; }
 	void SetPosition(const Vec3& position);
 
+	Vec3 GetWorldRight() { return _matWorld.Right(); }
+	Vec3 GetWorldUp() { return _matWorld.Up(); }
+	Vec3 GetWorldLook() { return _matWorld.Backward(); }
+
 	Matrix GetWorldMatrix() { return _matWorld; }
 
 	// °èÃþ °ü°è
@@ -52,10 +56,6 @@ private:
 	Vec3 _scale;
 	Vec3 _rotation;
 	Vec3 _position;
-
-	Vec3 _right;
-	Vec3 _up;
-	Vec3 _look;
 
 private:
 	shared_ptr<Transform> _parent;

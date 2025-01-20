@@ -1,7 +1,7 @@
 #pragma once
-#include "Transform.h"
 
 class GameObject;
+class Transform;
 
 enum class ComponentType
 {
@@ -22,6 +22,7 @@ enum
 class Component
 {
 public:
+	Component();
 	Component(ComponentType type);
 	virtual ~Component();
 
@@ -30,6 +31,9 @@ public:
 	virtual void Update() { }
 	virtual void LateUpdate() { }
 	virtual void FixedUpdate() { }
+
+public:
+	ComponentType GetType() { return _type; }
 
 	shared_ptr<GameObject> GetGameObject() { return _gameObject.lock(); }
 	shared_ptr<Transform> GetTransform();
