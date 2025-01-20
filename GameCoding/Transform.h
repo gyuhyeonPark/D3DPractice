@@ -3,11 +3,12 @@
 
 class Transform : public Component
 {
+	using Super = Component;
 public:
 	Transform();
 	~Transform();
 
-	virtual void Init() override;
+	virtual void Awake() override;
 	virtual void Update() override;
 
 	void UpdateTransform();

@@ -32,6 +32,8 @@ private:
 
 	shared_ptr<Transform> _transform = make_shared<Transform>();
 
-	shared_ptr<Transform> _parent = make_shared<Transform>();
+protected:
+	std::array<shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
+	vector<shared_ptr<Component>> _scripts;
 };
 

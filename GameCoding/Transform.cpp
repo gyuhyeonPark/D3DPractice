@@ -2,6 +2,7 @@
 #include "Transform.h"
 
 Transform::Transform()
+	: Super(ComponentType::Transform)
 {
 
 }
@@ -11,7 +12,7 @@ Transform::~Transform()
 
 }
 
-void Transform::Init()
+void Transform::Awake()
 {
 }
 
