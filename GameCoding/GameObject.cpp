@@ -38,7 +38,7 @@ GameObject::GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> 
 	_samplerState = make_shared<SamplerState>(device);
 	_samplerState->Create();
 
-	GetOrAddTransform()->SetLocalPosition(Vec3(1.5f, 0.f, 0.f));
+	//GetOrAddTransform()->SetLocalPosition(Vec3(1.5f, 0.f, 0.f));
 
 }
 
@@ -51,12 +51,14 @@ void GameObject::Awake()
 {
 	for (shared_ptr<Component>& component : _components)
 	{
-		component->Awake();
+		if (component)
+			component->Awake();
 	}
 
 	for (shared_ptr<MonoBehaviour>& script : _scripts)
 	{
-		script->Awake();
+		if (script)
+			script->Awake();
 	}
 }
 
@@ -64,12 +66,14 @@ void GameObject::Start()
 {
 	for (shared_ptr<Component>& component : _components)
 	{
-		component->Start();
+		if (component)
+			component->Start();
 	}
 
 	for (shared_ptr<MonoBehaviour>& script : _scripts)
 	{
-		script->Start();
+		if (script)
+			script->Start();
 	}
 }
 
@@ -77,12 +81,14 @@ void GameObject::Update()
 {
 	for (shared_ptr<Component>& component : _components)
 	{
-		component->Update();
+		if (component)
+			component->Update();
 	}
 
 	for (shared_ptr<MonoBehaviour>& script : _scripts)
 	{
-		script->Update();
+		if (script)
+			script->Update();
 	}
 
 	_transformData.matWorld = GetOrAddTransform()->GetWorldMatrix();
@@ -93,12 +99,14 @@ void GameObject::LateUpdate()
 {
 	for (shared_ptr<Component>& component : _components)
 	{
-		component->LateUpdate();
+		if (component)
+			component->LateUpdate();
 	}
 
 	for (shared_ptr<MonoBehaviour>& script : _scripts)
 	{
-		script->LateUpdate();
+		if (script)
+			script->LateUpdate();
 	}
 }
 
@@ -106,12 +114,14 @@ void GameObject::FixedUpdate()
 {
 	for (shared_ptr<Component>& component : _components)
 	{
-		component->FixedUpdate();
+		if (component)
+			component->FixedUpdate();
 	}
 
 	for (shared_ptr<MonoBehaviour>& script : _scripts)
 	{
-		script->FixedUpdate();
+		if (script)
+			script->FixedUpdate();
 	}
 }
 

@@ -1,7 +1,2 @@
-﻿  Component.cpp
-  Game.cpp
-  GameCoding.cpp
-  GameObject.cpp
-  코드를 생성하고 있습니다...
-DirectXTex_debug.lib(DirectXTexMipMaps.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex_debug.lib(DirectXTexMipMaps.obj)' 또는 'C:\Users\박규현\Desktop\Rookiss_DirectX11\D3DPractice\Binaries\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+﻿  GameObject.cpp
   GameCoding.vcxproj -> C:\Users\박규현\Desktop\Rookiss_DirectX11\D3DPractice\Binaries\GameCoding.exe
