@@ -40,6 +40,9 @@ using namespace Microsoft::WRL;
 #endif
 
 #define CHECK(p)	assert(SUCCEEDED(p))
+#include "Game.h"
+#define GAME GGame
+#define SCENE GAME->GetSceneManager()
 
 // Engine
 // 원래는 이런식으로 때려버리면 안되고, 꼭 헤더에 전방선언 및 cpp에 #include 해주는 것이 정석이다.

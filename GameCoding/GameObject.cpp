@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "GameObject.h"
 #include "MonoBehaviour.h"
+#include "Transform.h"
+#include "Camera.h"
 #include "MeshRenderer.h"
 
 GameObject::GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
@@ -100,6 +102,12 @@ shared_ptr<Transform> GameObject::GetTransform()
 {
 	shared_ptr<Component> component = GetFixedComponent(ComponentType::Transform);
 	return static_pointer_cast<Transform>(component);
+}
+
+shared_ptr<Camera> GameObject::GetCamera()
+{
+	shared_ptr<Component> component = GetFixedComponent(ComponentType::Camera);
+	return static_pointer_cast<Camera>(component);
 }
 
 shared_ptr<MeshRenderer> GameObject::GetMeshRenderer()
