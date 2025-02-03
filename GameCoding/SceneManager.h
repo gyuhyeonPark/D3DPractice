@@ -6,7 +6,7 @@ class Graphics;
 class SceneManager
 {
 public:
-	SceneManager(shared_ptr<Graphics> graphics);
+	SceneManager(shared_ptr<Graphics> graphics, shared_ptr<Pipeline> pipeline);
 
 	void Init();
 	void Update();
@@ -20,7 +20,7 @@ public:
 
 private:
 	shared_ptr<Graphics> _graphics;
-
+	shared_ptr<Pipeline> _pipeline;
 private:
 	shared_ptr<Scene> _activeScene;
 };

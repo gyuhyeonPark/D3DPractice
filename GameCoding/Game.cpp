@@ -24,7 +24,7 @@ void Game::Init(HWND hwnd)
 	_graphics = make_shared<Graphics>(hwnd);
 	_pipeline = make_shared<Pipeline>(_graphics->GetDeviceContext());
 
-	_sceneManager = make_shared<SceneManager>(_graphics);
+	_sceneManager = make_shared<SceneManager>(_graphics, _pipeline);
 	SCENE->LoadScene(L"Test");
 }
 

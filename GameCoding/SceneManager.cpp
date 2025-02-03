@@ -3,9 +3,10 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "MeshRenderer.h"
+#include "Pipeline.h"
 
-SceneManager::SceneManager(shared_ptr<Graphics> graphics)
-	: _graphics(graphics)
+SceneManager::SceneManager(shared_ptr<Graphics> graphics, shared_ptr<Pipeline> pipeline)
+	: _graphics(graphics), _pipeline(pipeline)
 {
 }
 
@@ -38,8 +39,8 @@ void SceneManager::LoadScene(wstring sceneName)
 
 shared_ptr<Scene> SceneManager::LoadTestScene()
 {
-	shared_ptr<Scene> scene;
-
+	shared_ptr<Scene> scene = make_shared<Scene>();
+	
 	// Camera
 	{
 		shared_ptr<GameObject> _camera = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
@@ -55,10 +56,11 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 		shared_ptr<GameObject> _monster = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 		{
 			_monster->GetOrAddTransform();
-			_monster->AddComponent(make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext()));
+			_monster->AddComponent(make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext(), _pipeline));
 			scene->AddGameObject(_monster);
 		}
 	}
 
-	return scene;
+	_activeScene = scene;
+	return _activeScene;
 }
