@@ -18,6 +18,7 @@ void Transform::Awake()
 
 void Transform::Update()
 {
+	UpdateTransform();
 }
 
 Vec3 ToEulerAngles(Quaternion q)

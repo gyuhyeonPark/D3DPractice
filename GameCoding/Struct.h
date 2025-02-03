@@ -7,6 +7,10 @@ struct TransformData
 	//float dummy;		// ConstantBuffer 생성 시엔 16바이트 정렬 필요 => dummy 값 추가
 
 	Matrix matWorld = Matrix::Identity;
+};
+
+struct CameraData
+{
 	Matrix matView = Matrix::Identity;
 	Matrix matProjection = Matrix::Identity;
 };
