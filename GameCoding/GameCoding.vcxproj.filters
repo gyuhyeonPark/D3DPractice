@@ -76,6 +76,12 @@
     <Filter Include="소스 파일\00. Engine\Manager\Input">
       <UniqueIdentifier>{415d6ae1-2ba0-46c4-9bd2-11a4fb33eb89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00. Engine\Manager\Resource">
+      <UniqueIdentifier>{56b15646-1219-444b-9f65-dea4485c596b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Resource">
+      <UniqueIdentifier>{cd37c5a5-3c89-4141-af7c-08a421d26822}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCoding.h">
@@ -135,9 +141,6 @@
     <ClInclude Include="ConstantBuffer.h">
       <Filter>소스 파일\00. Engine\Pipeline\02. VertexShader</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>소스 파일\00. Engine\Pipeline\04. PixelShader</Filter>
-    </ClInclude>
     <ClInclude Include="RasterizerState.h">
       <Filter>소스 파일\00. Engine\Pipeline\03. Rasterizer</Filter>
     </ClInclude>
@@ -173,6 +176,21 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>소스 파일\00. Engine\Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>소스 파일\00. Engine\Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>소스 파일\00. Engine\Manager\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceBase.h">
+      <Filter>소스 파일\00. Engine\Manager\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>소스 파일\00. Engine\Manager\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\00. Engine\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -228,9 +246,6 @@
     <ClCompile Include="ConstantBuffer.cpp">
       <Filter>소스 파일\00. Engine\Pipeline\02. VertexShader</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>소스 파일\00. Engine\Pipeline\04. PixelShader</Filter>
-    </ClCompile>
     <ClCompile Include="RasterizerState.cpp">
       <Filter>소스 파일\00. Engine\Pipeline\03. Rasterizer</Filter>
     </ClCompile>
@@ -266,6 +281,21 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\00. Engine\Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>소스 파일\00. Engine\Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>소스 파일\00. Engine\Manager\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceBase.cpp">
+      <Filter>소스 파일\00. Engine\Manager\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>소스 파일\00. Engine\Manager\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\00. Engine\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

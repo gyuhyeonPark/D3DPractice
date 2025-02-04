@@ -5,8 +5,8 @@
 #include "MeshRenderer.h"
 #include "Pipeline.h"
 
-SceneManager::SceneManager(shared_ptr<Graphics> graphics, shared_ptr<Pipeline> pipeline)
-	: _graphics(graphics), _pipeline(pipeline)
+SceneManager::SceneManager(shared_ptr<Graphics> graphics)
+	: _graphics(graphics)
 {
 }
 
@@ -56,7 +56,7 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 		shared_ptr<GameObject> _monster = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 		{
 			_monster->GetOrAddTransform();
-			_monster->AddComponent(make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext(), _pipeline));
+			_monster->AddComponent(make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext()));
 			scene->AddGameObject(_monster);
 		}
 	}
