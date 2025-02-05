@@ -5,6 +5,8 @@
 /// DeviceContext는 이들을 맵핑하는 역할을 한다.
 /// </summary>
 
+class Texture;
+
 struct PipelineInfo
 {
 	shared_ptr<InputLayout> inputLayout;

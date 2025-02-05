@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Pipeline.h"
+#include "Texture.h"
 
 Pipeline::Pipeline(ComPtr<ID3D11DeviceContext> deviceContext)
 	: _deviceContext(deviceContext)

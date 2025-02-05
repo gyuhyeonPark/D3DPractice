@@ -56,5 +56,5 @@ void Scene::RemoveGameObject(shared_ptr<GameObject> obj)
 
 const vector<shared_ptr<GameObject>> Scene::GetGameObjects()
 {
-	return vector<shared_ptr<GameObject>>();
+	return _gameObjects;
 }

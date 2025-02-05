@@ -1,6 +1,12 @@
 #pragma once
 #include "ResourceBase.h"
 
+class Mesh;
+class Shader;
+class Texture;
+class Material;
+class Animation;
+
 class ResourceManager
 {
 public:
@@ -82,8 +88,21 @@ inline shared_ptr<T> ResourceManager::Get(const wstring& key)
 template<typename T>
 inline ResourceType ResourceManager::GetResourceType()
 {
+	if (std::is_same<T, Mesh>())
+		return ResourceType::Mesh;
+
+	if (std::is_same<T, Shader>())
+		return ResourceType::Shader;
+
 	if (std::is_same<T, Texture>())
 		return ResourceType::Texture;
+
+	if (std::is_same<T, Material>())
+		return ResourceType::Material;
+
+	if (std::is_same<T, Animation>())
+		return ResourceType::Animation;
+
 
 	assert(false);
 	return ResourceType::None;

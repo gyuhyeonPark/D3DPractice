@@ -46,6 +46,7 @@ using namespace Microsoft::WRL;
 #define			INPUT			GAME->GetInputManager()
 #define			TIME			GAME->GetTimeManager()
 #define			RESOURCE		GAME->GetResourceManager()
+#define			RENDER			GAME->GetRenderManager()
 
 
 // Engine
@@ -57,9 +58,8 @@ using namespace Microsoft::WRL;
 #include "Geometry.h"
 #include "GeometryHelper.h"
 #include "VertexData.h"
-#include "Shader.h"
+#include "ShaderBase.h"
 #include "ConstantBuffer.h"
-#include "Texture.h"
 #include "RasterizerState.h"
 #include "SamplerState.h"
 #include "BlendState.h"
