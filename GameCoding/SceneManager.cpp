@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
 #include "Scene.h"
 #include "GameObject.h"
 #include "MeshRenderer.h"
 #include "Pipeline.h"
+#include "Mesh.h"
 
 SceneManager::SceneManager(shared_ptr<Graphics> graphics)
 	: _graphics(graphics)
@@ -56,7 +58,13 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 		shared_ptr<GameObject> _monster = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 		{
 			_monster->GetOrAddTransform();
-			_monster->AddComponent(make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext()));
+			auto meshRenderer = make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+			_monster->AddComponent(meshRenderer);
+			auto mesh = RESOURCE->Get<Mesh>(L"Rectangle");
+			meshRenderer->SetMesh(mesh);
+			auto material = RESOURCE->Get<Material>(L"Default");
+			meshRenderer->SetMaterial(material);
+
 			scene->AddGameObject(_monster);
 		}
 	}
