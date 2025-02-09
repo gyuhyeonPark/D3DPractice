@@ -210,8 +210,11 @@
     <ClInclude Include="RenderManager.h">
       <Filter>소스 파일\00. Engine\Manager\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>소스 파일\00. Engine\Component\Animation</Filter>
+    </ClInclude>
     <ClInclude Include="RenderHelper.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\00. Engine\Manager\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -333,8 +336,11 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>소스 파일\00. Engine\Manager\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>소스 파일\00. Engine\Component\Animation</Filter>
+    </ClCompile>
     <ClCompile Include="RenderHelper.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\00. Engine\Manager\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

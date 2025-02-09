@@ -6,6 +6,7 @@
 #include "MeshRenderer.h"
 #include "Pipeline.h"
 #include "Mesh.h"
+#include "Animator.h"
 
 SceneManager::SceneManager(shared_ptr<Graphics> graphics)
 	: _graphics(graphics)
@@ -55,18 +56,23 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 
 	// Monster
 	{
-		shared_ptr<GameObject> _monster = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+		shared_ptr<GameObject> monster = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 		{
-			_monster->GetOrAddTransform();
+			monster->GetOrAddTransform();
 			auto meshRenderer = make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext());
-			_monster->AddComponent(meshRenderer);
+			monster->AddComponent(meshRenderer);
 			auto mesh = RESOURCE->Get<Mesh>(L"Rectangle");
 			meshRenderer->SetMesh(mesh);
 			auto material = RESOURCE->Get<Material>(L"Default");
 			meshRenderer->SetMaterial(material);
-
-			scene->AddGameObject(_monster);
 		}
+		{
+			auto animator = make_shared<Animator>();
+			monster->AddComponent(animator);
+			auto anim = RESOURCE->Get<Animation>(L"SnakeAnim");
+			animator->SetAnimation(anim);
+		}
+		scene->AddGameObject(monster);
 	}
 
 	_activeScene = scene;

@@ -25,7 +25,7 @@ void ResourceManager::CreateDefaultMesh()
 	shared_ptr<Mesh> mesh = make_shared<Mesh>(_device);
 	mesh->SetName(L"Rectangle");
 	mesh->CreateDefaultRectangle();
-	Add<Mesh>(mesh->GetName(), mesh);
+	Add(mesh->GetName(), mesh);
 }
 
 void ResourceManager::CreateDefaultShader()
@@ -44,15 +44,24 @@ void ResourceManager::CreateDefaultShader()
 	shader->SetInputLayout(inputLayout);
 	shader->SetVertexShader(vertexShader);
 	shader->SetPixelShader(pixelShader);
-	Add<Shader>(shader->GetName(), shader);
+	Add(shader->GetName(), shader);
 }
 
 void ResourceManager::CreateDefaultTexture()
 {
-	shared_ptr<Texture> texture = make_shared<Texture>(_device);
-	texture->SetName(L"Skeleton");
-	texture->Create(L"Skeleton.png");
-	Add<Texture>(texture->GetName(), texture);
+	{
+		shared_ptr<Texture> texture = make_shared<Texture>(_device);
+		texture->SetName(L"Skeleton");
+		texture->Create(L"Skeleton.png");
+		Add(texture->GetName(), texture);
+	}
+	
+	{
+		shared_ptr<Texture> texture = make_shared<Texture>(_device);
+		texture->SetName(L"Snake");
+		texture->Create(L"Snake.bmp");
+		Add(texture->GetName(), texture);
+	}
 }
 
 void ResourceManager::CreateDefaultMaterial()
@@ -61,9 +70,20 @@ void ResourceManager::CreateDefaultMaterial()
 	material->SetName(L"Default");
 	material->SetShader(Get<Shader>(L"Default"));
 	material->SetTexture(Get<Texture>(L"Skeleton"));
-	Add<Material>(material->GetName(), material);
+	Add(material->GetName(), material);
 }
 
 void ResourceManager::CreateDefaultAnimation()
 {
+	shared_ptr<Animation> animation = make_shared<Animation>();
+	animation->SetTexture(Get<Texture>(L"Snake"));
+	animation->SetName(L"SnakeAnim");
+	animation->SetLoop(true);
+
+	animation->AddKeyFrame(KeyFrame{ Vec2(0.f,0.f), Vec2(100.f, 100.f), 0.1f });
+	animation->AddKeyFrame(KeyFrame{ Vec2(100.f,0.f), Vec2(100.f, 100.f), 0.1f });
+	animation->AddKeyFrame(KeyFrame{ Vec2(200.f,0.f), Vec2(100.f, 100.f), 0.1f });
+	animation->AddKeyFrame(KeyFrame{ Vec2(300.f,0.f), Vec2(100.f, 100.f), 0.1f });
+
+	Add(animation->GetName(), animation);
 }

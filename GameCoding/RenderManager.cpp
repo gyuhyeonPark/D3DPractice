@@ -60,6 +60,11 @@ void RenderManager::PushTransformData()
 	_transformDataBuffer->CopyData(_transformData);
 }
 
+void RenderManager::PushAnimationData()
+{
+	_animationDataBuffer->CopyData(_animationData);
+}
+
 void RenderManager::GatherRenderableObjects()
 {
 	_renderObjects.clear();

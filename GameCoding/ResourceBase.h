@@ -29,6 +29,9 @@ public:
 	const wstring& GetName() { return _name; }
 	uint32 GetID() { return _id; }
 
+	virtual void Load(const wstring& path) {}
+	virtual void Save(const wstring& path) {}
+
 private:
 	ResourceType _type = ResourceType::None;
 	wstring _name;
