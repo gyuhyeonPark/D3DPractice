@@ -34,6 +34,6 @@ private:
 
 	// Misc
 	D3D11_VIEWPORT _viewPort = { 0 };
-	float _clearColor[4] = { 1.0f, 1.0f, 1.0f, 0.0f };
+	float _clearColor[4] = { 0.5f, 0.5f, 0.5f, 0.0f };
 };
 

@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "Mesh.h"
+#include "Animator.h"
 
 RenderManager::RenderManager(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
 	: _device(device), _deviceContext(deviceContext)
@@ -25,6 +26,9 @@ void RenderManager::Init()
 
 	_transformDataBuffer = make_shared<ConstantBuffer<TransformData>>(_device, _deviceContext);
 	_transformDataBuffer->Create();
+
+	_animationDataBuffer = make_shared<ConstantBuffer<AnimationData>>(_device, _deviceContext);
+	_animationDataBuffer->Create();
 
 	_rasterizerState = make_shared<RasterizerState>(_device);
 	_rasterizerState->Create();
@@ -95,6 +99,31 @@ void RenderManager::RenderObjects()
 		_transformData.matWorld = transform->GetWorldMatrix();
 		PushTransformData();
 
+		// Animation
+		shared_ptr<Animator> animator = obj->GetAnimator();
+		if (animator)
+		{
+			const KeyFrame& keyframe = animator->GetCurrentKeyFrame();
+			_animationData.spriteOffset = keyframe.offset;
+			_animationData.spriteSize = keyframe.size;
+			_animationData.textureSize = animator->GetCurrentAnimation()->GetTextureSize();
+			_animationData.useAnimation = 1.f;
+			PushAnimationData();
+
+			_pipeline->SetConstantBuffer(2, SS_VertexShader, _animationDataBuffer);
+			_pipeline->SetTexture(0, SS_PixelShader, animator->GetCurrentAnimation()->GetTexture());
+		}
+		else
+		{
+			_animationData.spriteOffset = Vec2(0.f, 0.f);
+			_animationData.spriteSize = Vec2(0.f, 0.f);
+			_animationData.textureSize = Vec2(0.f, 0.f);
+			_animationData.useAnimation = 0.f;
+			PushAnimationData();
+			_pipeline->SetConstantBuffer(2, SS_VertexShader, _animationDataBuffer);
+			_pipeline->SetTexture(0, SS_PixelShader, meshRenderer->GetTexture());
+		}
+
 		PipelineInfo info;
 		info.inputLayout = meshRenderer->GetInputLayout();
 		info.vertexShader = meshRenderer->GetVertexShader();
@@ -109,7 +138,7 @@ void RenderManager::RenderObjects()
 		_pipeline->SetConstantBuffer(0, SS_VertexShader, _cameraDataBuffer);
 		_pipeline->SetConstantBuffer(1, SS_VertexShader, _transformDataBuffer);
 
-		_pipeline->SetTexture(0, SS_PixelShader, meshRenderer->GetTexture());
+		//_pipeline->SetTexture(0, SS_PixelShader, meshRenderer->GetTexture());
 		_pipeline->SetSamplerState(0, SS_PixelShader, _samplerState);
 
 		_pipeline->DrawIndexed(meshRenderer->GetMesh()->GetIndexBuffer()->GetCount(), 0, 0);

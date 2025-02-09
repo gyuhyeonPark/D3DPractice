@@ -86,4 +86,11 @@ void ResourceManager::CreateDefaultAnimation()
 	animation->AddKeyFrame(KeyFrame{ Vec2(300.f,0.f), Vec2(100.f, 100.f), 0.1f });
 
 	Add(animation->GetName(), animation);
+
+	// XML
+	animation->Save(L"TextAnim.xml");
+
+
+	shared_ptr<Animation> anim2 = make_shared<Animation>();
+	anim2->Load(L"TextAnim.xml");
 }

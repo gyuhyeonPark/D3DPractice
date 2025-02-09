@@ -85,6 +85,9 @@
     <Filter Include="소스 파일\00. Engine\Manager\Render">
       <UniqueIdentifier>{c3109a5d-4c15-4d38-84ed-de3b839a0563}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\99. Headers\Utils">
+      <UniqueIdentifier>{9845e803-1676-4ce9-8218-d5449ca099a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCoding.h">
@@ -113,9 +116,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>소스 파일\01. Main</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleMath.h">
-      <Filter>소스 파일\99. Headers</Filter>
     </ClInclude>
     <ClInclude Include="Graphics.h">
       <Filter>소스 파일\00. Engine\Pipeline</Filter>
@@ -216,6 +216,15 @@
     <ClInclude Include="RenderHelper.h">
       <Filter>소스 파일\00. Engine\Manager\Render</Filter>
     </ClInclude>
+    <ClInclude Include="CameraMove.h">
+      <Filter>소스 파일\00. Engine\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameCoding.rc">
@@ -239,9 +248,6 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>소스 파일\01. Main</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleMath.cpp">
-      <Filter>소스 파일\99. Headers</Filter>
     </ClCompile>
     <ClCompile Include="Graphics.cpp">
       <Filter>소스 파일\00. Engine\Pipeline</Filter>
@@ -342,6 +348,15 @@
     <ClCompile Include="RenderHelper.cpp">
       <Filter>소스 파일\00. Engine\Manager\Render</Filter>
     </ClCompile>
+    <ClCompile Include="CameraMove.cpp">
+      <Filter>소스 파일\00. Engine\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleMath.cpp">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Default.hlsl">
@@ -350,7 +365,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
-      <Filter>소스 파일\99. Headers</Filter>
+      <Filter>소스 파일\99. Headers\Utils</Filter>
     </None>
   </ItemGroup>
 </Project>
